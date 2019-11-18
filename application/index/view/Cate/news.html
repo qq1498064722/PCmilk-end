@@ -1,0 +1,132 @@
+{include  file='public/header' title=$title}
+<link rel="stylesheet" href="__CSS_PATH__/new.css">
+    <!-- 头部开始 -->
+    <div class="pic-box ">
+        <img src="__IMG_PATH__/图片8.jpeg " alt=" ">
+    </div>
+    <!-- 养护文字开始 -->
+    <div class="yanghu-box ">
+        <div class="line-left "></div>
+        <div class="yanghu-text-box ">
+            <div class="yanghu-text ">
+                三毛全集
+            </div>
+            <div class="yanghu-english ">
+                Complete works
+            </div>
+        </div>
+        <div class="line-right "></div>
+    </div>
+    <!-- 养护文字结束 -->
+
+    <!-- 正文段落开始 -->
+
+    <div class="texts-box ">
+        <p class="title ">主编推荐</p>
+        <div class="fabu-date ">
+            <span>发布日期：2019-10-12 09:23</span>
+        </div>
+        <div class="zhengwen-box ">
+            <div class="zhengwen-first ">
+                <span style="color:#dc361d;font-weight: 600;display: block;margin-bottom: 10px">
+                    专辑介绍：你的心是我的海角和天涯，我不能去得更远。我们此生共赴天涯海角，不是游走半个地球，而是人间相伴。
+                </span>
+                <span>
+                    《三毛全集》2011年由北京十月文艺出版社出版发行，共有11本。分别是：《雨季不再来》、《撒哈拉的故事》、《稻草人手记》、《温柔的夜》、《梦里花落知多少》、《万水千山走遍》、《送你一匹马》、《亲爱的三毛》、《我的宝贝》、《滚滚红尘》、《流星雨》。
+                </span>
+            </div>
+            <div>
+                <span>&nbsp</span>
+            </div>
+            <p>
+                <span>
+                   三毛的文字，朴素、干净、寂寞、纯净。读她的文字，让我不免有些难过。她的孤独、她的敏感脆弱、她的多情，造就了这个内心细腻的女子，却也每每让她伤心。太敏感的人，容易悲哀，大概就是如此罢。
+
+当读到三毛同时创作4本书，在妈妈与挚友的医院里跑来跑去，房里孤灯常常开到清晨，过了三个月几乎没合过眼的日子……被讲演、座谈会和饭局逼得崩溃的时候，我也替她揪心。这些日子，三毛啊，你是怎么度过的呀？              </span>
+            </p>
+            <p>
+                <span>&nbsp</span>
+            </p>
+            <p>
+                <span>
+                    1、走在寒冷的甲板上，总使我觉得，自己是从一场豪华的大宴会里出来，那时，曲终人散，意兴阑珊，此情此景，最是令人反复玩味。
+
+2、留大胡子的人，本性上大半是害羞的，他们以为将自己躲在胡子里面比较安然。
+
+3、那是一口深井，许多女人在井旁打水，嘻嘻哈哈，情景十分活泼动人。我提着两只空水桶，像呆子一样望着她们。这批女人看见我这个穿衣服的人进去，大家都停住了，我们彼此望来望去，面露微笑，这些女人不太会讲西班牙话。
+
+4、我希望把有生之年的时间都静静的跟你分享。短短的人生，我们不要再分开了啊!
+
+5、刻意的东西，就连风景都得寻寻切切，寻找的东西，往往一定找不到，却很累人。
+
+6、在我们的生命里，常会出现某些闪烁有若纯金一般的时刻。如果，如果我们能够将时间就驻留在那一霎间，将它凝冻起来，这个世界必然有如天堂。
+
+7、不能随方就圆，也许是我的执着，这样被磨着的时候就更痛了。滚石不生苔，造出了一个心神活泼的三毛，那是可贵的。
+                </span>
+            </p>
+            <p>
+                <span>&nbsp</span>
+            </p>
+            <p>
+                <span>每想你一次，天上飘落一粒沙，从此形成了撒哈拉。每想你一次，天上就掉下一滴水，于是形成了太平洋。</span>
+                <span>感谢你赠我一场空欢喜，我们有过的美好回忆，让泪水染得模糊不清了。偶尔想起，记忆犹新，就像当初，我爱你，没有什么目的，只是爱你。
+                </span>
+            </p>
+        </div>
+    </div>
+    <!-- 正文段落结束 -->
+
+    <!-- 上下篇 开始-->
+
+<div class="prenext ">
+    <a href="news?id={$up['id']}">
+        <span class="befor ">上一篇:{$up['type']}</span>&nbsp
+        <span class="befor-title "></span>
+    </a>
+    <span class="kong "></span>
+    <a href="news?id={$down['id']} ">
+        <span class="next ">下一篇:{$down['type']}</span>&nbsp
+        <span class="next-title "></span>
+    </a>
+</div>
+
+    <!-- 屏幕为992以下时 -->
+    <div class="prenext-clone " >
+        <div class="before ">
+            <a href="news?id={$up['id']}">
+                <span class="befor ">上一篇:{$up['type']}</span>&nbsp
+                <span class="befor-title "></span>
+            </a>
+        </div>
+        <div class="next-box ">
+            <a href="news?id={$down['id']} ">
+                <span class="next ">下一篇:{$down['type']}</span>&nbsp
+                <span class="next-title "></span>
+            </a>
+        </div>
+    </div>
+    <!-- 上下篇结束 -->
+
+
+    <!-- 返回按钮开始 -->
+
+    <div class="back-btn ">
+        <div class="btn-box ">
+            <a href="../新闻资讯/新闻资讯.html "><button>返回列表</button></a>
+        </div>
+    </div>
+
+    <!-- 返回按钮结束 -->
+
+    <!-- 底部图片开始 -->
+
+    <div class="lastpic-box ">
+        <img src="__IMG_PATH__/三毛.gif " alt=" ">
+    </div>
+
+    <!-- 底部图片结束 -->
+
+
+    <!--尾栏 -->
+{include file='public/foot'}
+<script src="__JS_PATH__/newpublic.js"></script>

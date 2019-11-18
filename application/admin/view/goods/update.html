@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="layui-layout-body">
+
+<form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属分类</label>
+        <div class="layui-input-block">
+            <select name="cid" lay-verify="required">
+                <option value=""></option>
+                {volist name="cate" id="v"}
+                <option value="{$v.cid}">{$v.cname}<br/></option>
+                {/volist}
+            </select>
+
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品名称</label>
+        <div class="layui-input-block">
+            <input type="text" lay-verify="nname|require" name="gname" placeholder="请输入3-10个字符" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">市场价</label>
+        <div class="layui-input-block">
+            <input type="number" lay-verify="number" name="gprice" placeholder="请输入商品市场价" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">零售价</label>
+        <div class="layui-input-block">
+            <input type="number" lay-verify="number" name="sale" placeholder="请输入商品零售价" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">库存</label>
+        <div class="layui-input-block">
+            <input type="number" lay-verify="number" name="stock" placeholder="请输入库存量" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">详情</label>
+        <div class="layui-input-block">
+            <textarea id="layedit" style="display: none;" type="text" lay-verify="require" name="detail" placeholder="请输入库存量" autocomplete="off" class="layui-input">
+        </textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">缩略图:<span></span></label>
+        <div class="layui-input-block">
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test1">缩略图上传</button>
+                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                    预览图：
+                    <div class="layui-upload-list" id="demo1">
+                        <img src="" alt="" width="200" id="thumb">
+                    </div>
+                    <input type="hidden" name="thumb">
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">轮播图</label>
+        <div class="layui-input-block">
+
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test2">轮播图上传</button>
+                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                    预览图：
+                    <div class="layui-upload-list" id="banner">
+                    </div>
+                    <input type="hidden" name="banner">
+                </blockquote>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{include  file='public/header' title=$title}
+<link rel="stylesheet" href="__CSS_PATH__/xinwenzixun.css">
+
+<!-- 头部图片开始 -->
+    <div class="pic-box">
+        <img src="__IMG_PATH__/图片8.jpeg" alt=" ">
+    </div>
+    <!-- 头部图片结束 -->
+
+    <!-- 养护文字开始 -->
+    <div class="yanghu-box">
+        <div class="line-left"></div>
+        <div class="yanghu-text-box">
+            <div class="yanghu-text">
+                {$title}
+            </div>
+            <div class="yanghu-english">
+                {$ename}
+            </div>
+        </div>
+        <div class="line-right"></div>
+    </div>
+    <!-- 养护文字结束 -->
+
+    <!-- 文章标题开始 -->
+    <div class="content">
+        <ul class="list">
+            {volist name="news" id="vo"}
+            <div class="post-title">
+                <a href="/public/public/index/Cate/news?id={$vo.id}" title="{$vo['type']}">
+                    {$vo['type']} ----- 《{$vo.detail}》
+                                <span class="time">{$vo['time']}</span>
+                </a>
+            </div>
+            {/volist}
+        </ul>
+    </div>
+    <!-- 文章标题结束 -->
+
+    <!-- 底部图片开始 -->
+    <div class="lastpic-box">
+        <img src="__IMG_PATH__/图片7.jpeg" alt=" ">
+    </div>
+    <!-- 底部图片结束 -->
+
+
+    <!--尾栏 -->
+{include file='public/foot'}
+<script src="__JS_PATH__/xwpublic.js"></script>

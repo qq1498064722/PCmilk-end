@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看导航</title>
+    <link rel="stylesheet" href="/public/public/static/css/layui.css"  media="all">
+</head>
+<body>
+<table id="demo" class="layui-hide" lay-filter="test"></table>
+
+<script src="/public/public/static/layui.js" charset="utf-8"></script>
+<script type="text/html" id="barDemo">
+<!--    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    // const HOSTNAME= "/public/public/admin/nav";
+    layui.use(['table','element'], function() {
+        let $ = layui.$
+            , table = layui.table
+            , element = layui.element;
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            // ,height: 312
+            , url: '/public/public/index.php/admin/nav/query' //数据接口
+            // ,page: true //开启分页
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', title: 'id', width: 80, sort: true, fixed: 'left'}
+                , {field: 'nname', title: '中文名称',  edit: 'test', width: 80}
+                , {field: 'ename', title: '英文名称',  edit: 'test', width: 80}
+                , {field: 'sort', title: '排序',  edit: 'test', width: 80, sort: true}
+                , {field: 'ntpl', title: '模板',  edit: 'test', width: 177}
+                , {fixed: 'right', title: '操作',  width: 165, align: 'center', toolbar: '#barDemo'}
+            ]]
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            let data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            // let qe=data.field;
+            if (layEvent === 'del') {
+
+                layer.confirm('真的删除行么', function (index) {
+
+
+                    layer.close(index);
+                    //向服务端发送删除指令
+                    $.ajax({
+                        type: 'POST',
+                        url: '/public/public/admin/nav/delete',
+                        dataType: 'json',
+                        data: data,
+                        success(res) {
+                            if (res.code === 200) {
+                                obj.del(); //删除对应行（tr）的DOM结构
+                                console.log('删除成功');
+                            } else {
+                                alert('删除失败');
+                            }
+                        }
+
+                    })
+                });
+            } else if (layEvent === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data));
+
+
+            }
+
+        });
+
+        //监听单元格事件
+        table.on('edit(test)', function (obj) {
+            let value = obj.value //得到修改后的值
+                ,data=obj.data//得到所在行所有键值
+                ,id=obj.data.id                //得到id
+                , field = obj.field; //得到字段
+            // layer.alert(value);
+            // layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
+           // let edit= layer.open({
+           //      type: 3,
+           //      icon: 3,
+           //
+           //  });
+            $.ajax({
+                type: 'POST',
+                url: '/public/public/admin/nav/update',
+                dataType: 'json',
+                data:{ field,id,value},
+                success(res) {
+                    if (res.code === 200) {
+                        // layer.close(edit);
+                        console.log('修改成功');
+                    } else {
+                        alert('修改失败');
+                    }
+                }
+            });
+
+
+        })
+
+    })
+</script>
+</body>
+</html>

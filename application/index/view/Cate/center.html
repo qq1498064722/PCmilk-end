@@ -1,0 +1,61 @@
+{include file='public/header' title=$title}
+<link rel="stylesheet" href="__CSS_PATH__/center.css">
+    <!-- 展示图开始 -->
+    <div class="container">
+        <div class="images">
+            <img src="__IMG_PATH__/图片7.jpeg" alt="">
+        </div>
+    </div>
+    <!-- 标题-->
+    <div class="container title1">
+        <div class="b-box">
+            <!-- <div class="row"> -->
+            <div class="title">
+                <span class="line-left"></span>
+                <div class="word">
+                    <p class="main">{$title}</p>
+                    <p class="sub">{$ename}</p>
+                </div>
+                <span class="line-right"></span>
+            </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    <!-- 列表 -->
+<div class="container list1">
+    <div class="L-box">
+        <ul class="list">
+            {volist name="cate" id="vo"}
+            <li class="items" >
+                <span>{$vo['cname']}</span>
+                <div class="content box-style">
+
+                    {volist name="vo['goods']" id="v"}
+                    <div class="shop">
+                        <div class="shoplist">
+                            <div class="shoppic">
+                                <div class="shoppicture">
+                                    <a href="/public/public/index/Cate/item?gid={$v.gid}">
+                                        <img src="{$v.thumb}" alt="" style="width: 200px">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="shopword">
+                                <a class="word1" href="/public/public/index/Cate/item?gid={$v.gid}>">
+                                    {$v.gname}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+
+                </div>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+
+<!-- 内容部分结束 -->
+{include file='public/foot'}
+<script src="__JS_PATH__/center.js"></script>

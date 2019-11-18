@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/public/public/static/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style>
+        .layui-tab{
+            position: relative;
+            width: 100%;
+            height: calc(100% - 20px);
+        }
+        .layui-tab >.layui-tab-content{
+            position: absolute;
+            top: 41px;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .layui-tab-content >.layui-tab-item{
+            height: 100%;
+        }
+        iframe{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+<!--                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">-->
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">导航管理</a>
+                    <dl class="layui-nav-child">
+                        <dd id="11" data-url="/public/public/admin/nav/openinsert"><a href="javascript:;">添加导航</a></dd>
+                        <dd id="12" data-url="/public/public/admin/nav/index"><a href="javascript:;">查看导航</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">商品分类</a>
+                    <dl class="layui-nav-child">
+                        <dd id="21"><a href="javascript:;">查看分类</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">商品管理</a>
+                    <dl class="layui-nav-child">
+                        <dd id="31" data-url="/public/public/admin/goods/openinsert"><a href="javascript:;">添加商品</a></dd>
+                        <dd id="32" data-url="/public/public/admin/goods/index"><a href="javascript:;">查看商品</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;width: 100%;height: 100%;box-sizing: border-box">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>动态操作Tab</legend>
+            </fieldset>
+
+            <div class="layui-tab" lay-filter="demo" lay-allowclose="true">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" lay-id="1">网站设置</li>
+
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">内容1</div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+
+
+
+<script src="/public/public/static/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+<script>
+    layui.use(['layer','element','form'],function () {
+        let layer=layui.layer,$=layui.$,element=layui.element;
+        $('dd').on('click',function(){
+            let $id=$(this).attr('id');
+            // $id=$(this).dataset.id;$(this).data('id');
+            let lis=$('li[lay-id]');
+            flag=false;
+            let arr=lis.map(function (index,element) {
+                return element.getAttribute('lay-id');
+
+            })
+            flag=Array.from(arr).some(ele=>ele==$id);
+            flag=Array.prototype.some.call(arr,ele=>ele==$id)
+            if(flag){
+                element.tabChange('demo', $id);
+            }
+            else {
+                let urls=this.dataset.url;
+                // console.log(urls);
+                element.tabAdd('demo',{
+                            title:$('a',this).text(),
+                            content:
+                                `<iframe frameborder="0" src="${urls}">
+                                </iframe>`
+                            ,
+                            id:$id
+                        })
+            }
+        })
+    })
+</script>
+
+<!--<script>-->
+<!--    layui.use(['layer','element','form'], function() {-->
+<!--        let layer = layui.layer, $ = layui.$, element = layui.element;-->
+<!--        //Tab的切换功能，切换事件监听等，需要依赖element模块-->
+<!--        $('dd').on('click', function () {-->
+<!--            let did = this.dataset.id;-->
+<!--            let lis = $("li[lay-id]");-->
+<!--            let flag = false;-->
+<!--            for (let i = 0; i < lis.length; i++) {-->
+<!--                var lid = lis[i].attributes['lay-id'].nodeValue;-->
+<!--                if (did == lid) {-->
+<!--                    flag = true;-->
+<!--                }-->
+<!--            }-->
+<!--            if (flag == true) {-->
+<!--                element.tabChange('demo', did);-->
+<!--                flag = false;-->
+<!--            } else {-->
+<!--                element.tabAdd('demo', {-->
+<!--                    //this>a>text-->
+<!--                    //data-id-->
+<!--                    //this.dataset.id-->
+<!--                    title: $(this).children('a').text(),-->
+<!--                    content: '010101',-->
+<!--                    id: this.dataset.id-->
+<!--                });-->
+<!--                element.tabChange('demo', did);-->
+<!--            }-->
+<!--        })-->
+<!--    });-->
+<!--</script>-->
+</body>
+</html>

@@ -1,0 +1,109 @@
+{include file='public/header' title=$title}
+<link rel="stylesheet" href="__CSS_PATH__/item.css">
+<!-- 展示图开始 -->
+<div class="container">
+    <div class="images">
+
+    </div>
+</div>
+    <!-- banner -->
+<div class="banner ">
+    <img src="__IMG_PATH__/图片7.jpeg" alt="">
+</div>
+    <!-- item -->
+    <div class="big-box ">
+        <div class="title ">
+            <span>{$gname}</span>
+        </div>
+        <div class="row ">
+            <div class="lunbo swiper-container " style="margin: 0 ">
+                <!-- 轮播图开始 -->
+
+                <div class="swiper-wrapper ">
+                    {volist name='all' id='v'}
+                    <div class="lunbo swiper-slide ">
+                        <img src="{$v}" alt=" ">
+                    </div>
+
+                    {/volist}
+
+                </div>
+                <div class="swiper-pagination "></div>
+                <!-- </div> -->
+                <!-- 轮播图结束 -->
+            </div>
+
+            <div class="word ">
+                <div class="witem ">
+                    <div class="price ">
+                        <span>市场价：￥{$gprice}</span>
+                    </div>
+                    <div class="price1 ">
+                        <span>零售价：</span>
+                        <span class="buy-price ">￥{$sale}</span>
+                    </div>
+                    <div class="line "></div>
+                    <div class="state ">
+                        <span>库存状况：{$stock}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="wenzi ">
+            <div class="jieshao "><span style="font-size: 22px ">商品介绍</span></div>
+            <div class="neirong1 ">
+                <span style="font-size:16px; color:rgb(128, 128,128); ">
+                  {$detail}
+            </span>
+            </div>
+            <div style="position: relative ">&nbsp;</div>
+            <div class="neirong2 ">
+                <span style="font-size:16px; color:rgb(128, 128,128); " >
+                {$detail}
+                </span>
+            </div>
+
+
+            </div>
+
+        <div class="prenext " style="margin:50px">
+            <a href=" item?gid={$up['gid']}">
+                <span class="befor ">上一篇:{$up['gname']}</span>&nbsp
+                <span class="befor-title "></span>
+            </a>
+            <span class="kong "></span>
+            <div style="float: right">
+
+
+            <a href="item?gid={$down['gid']} ">
+                <span class="next ">下一篇:{$down['gname']}</span>&nbsp
+                <span class="next-title "></span>
+            </a>
+            </div>
+        </div>
+    </div>
+
+            <!--尾栏 -->
+        {include file='public/foot'}
+      
+<script src="__JS_PATH__/swiper.min.js "></script>
+<!-- <script src="js/item.js "></script> -->
+<script src="__JS_PATH__/jQuery.js "></script>
+<script src="__JS_PATH__/animate.js "></script>
+
+
+<!--<script>-->
+<!--    var mySwiper = new Swiper('.swiper-container', {-->
+<!--        autoplay: true, //可选选项，自动滑动-->
+<!--        loop: true,-->
+<!--        navigation: {-->
+<!--            nextEl: '.swiper-button-next',-->
+<!--            prevEl: '.swiper-button-prev',-->
+<!--        },-->
+<!--        pagination: {-->
+<!--            el: '.swiper-pagination',-->
+<!--        },-->
+<!--    })-->
+<!--</script>-->

@@ -1,0 +1,130 @@
+{include  file='public/header' title=$title}
+<link rel="stylesheet" href="/public/public/static/css/layui.css">
+<script src="/public/public/static/layui.js"></script>
+<link rel="stylesheet" href="__CSS_PATH__/zxpublic.css">    <!-- 小于992的导航栏下拉列表 -->
+    <!-- 图片开始 -->
+<style>
+    .layui-form-label{
+        width: auto;
+    }
+</style>
+<div class="lastpic-box" style="margin-top: 20px">
+    <img src="__IMG_PATH__/长图1.jpg" alt=" ">
+</div>
+    <!-- 图片结束 -->
+    <!-- 线条 -->
+    <section class="middle-box">
+        <div class="containter">
+            <div class="row" style="text-align:center;">
+                <div class="mbox">
+                    <div class="mbox-box">
+                        <span class="line-left"></span>
+                        <div class="font-box">
+                            <div class="top-font fontstyle"> {$title}</div>
+                            <div class="bottom-font fontstyle"> {$ename}</div>
+                        </div>
+                        <span class="line-right"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 框子 -->
+
+<!-- 在线预约主体大盒子 -->
+<!-- <div class="main"> -->
+<div class="container">
+    <!-- 在线预约信息部分开始 -->
+    <div class="INPUTBOX">
+        <div class="inputbox ">
+            <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">预约服务</label>
+                    <div class="layui-input-block">
+                        <select class="style " style="width:100px; " name="server">
+                                {volist name="news" id="vo"}
+                                <option value="{$vo['type']}" name="server">{$vo['type']}</option>
+                                {/volist}
+                            </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出行时间</label>
+                    <div class="layui-input-block">
+                        <input lay-verify="required" type="date" name="data" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">您的姓名</label>
+                    <div class="layui-input-block">
+                        <input lay-verify="required" type="text" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">您的性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">您的电话</label>
+                    <div class="layui-input-block">
+                        <input type="phone" name="phone" lay-verify="number|required" placeholder="请输入电话" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">补充说明</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="introduce" placeholder="请输入补充说明" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!--<div class="layui-form-item">
+                    <label class="layui-form-label">验证码：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="code" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                        <br>
+                        <img src="{:captcha_src()}" alt="captcha"
+                             onclick="this.src=this.src+'?a='+Date.now()";
+                        />
+                    </div>
+                </div>-->
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="go">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 在线预约信息部分结束 -->
+
+
+    {include file='public/foot'}
+    <script src="__JS_PATH__/zxpublic.js"></script>
+    <!-- 小于992的尾栏 -->
+<script>
+    layui.use('form',function(){
+        let form=layui.form,$=layui.$;
+        form.on('submit(go)',function (data) {
+            let qs=data.field;
+            delete qs.file;
+            $.ajax({
+                dataType:'json',
+                data:qs,
+                type:'POST',
+                url:'/public/public/index.php/index/Cate/zaixianyuyue',
+                success:function(res){
+                    if(res.code===200){
+                        layer.msg(res.msg);
+                    }else{
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+            return false;
+        })
+    })
+</script>
